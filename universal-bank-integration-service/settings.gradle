@@ -1,0 +1,4 @@
+rootProject.name = 'universal-bank-integration-service'
+
+include ":universal-bank-contracts"
+project(":universal-bank-contracts").projectDir = file("../universal-bank-contracts")

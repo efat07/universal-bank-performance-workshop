@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CRMBusinessEvent
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://universal-bank/crm/enterprise-model/framework/1.0.0 ../jdeveloper/mywork/xml-modeling/universal-bank/src/main/java/contracts/universal-bank-business-events.xsd"
+	xmlns="http://universal-bank/crm/enterprise-model/framework/1.0.0">
+	
+	<eventHeader>
+		<eventID>1</eventID>
+		<sourceSystem>CRM</sourceSystem>
+		<eventChannel>FINANCIAL-TRANSACTION-CHANNEL</eventChannel>
+		<eventCreationTime>2014-02-03T00:00:00</eventCreationTime>
+	</eventHeader>
+	
+	<businessEventType>PURCHASE</businessEventType>
+	
+	<enterpriseOperationEventObject enterpriseOperationKey="AH01">
+		<branchOfficeInfo>
+			<lineNumber>NMSA854</lineNumber>
+			<name>A B ELECTROLUX	SWEDEN	NMS</name>
+			<assignedLicense>NMSA854</assignedLicense>
+		</branchOfficeInfo>
+		<customerInfo>
+			<fullName>ISMAEL CARDONA RENGIFO</fullName>
+			<id>000012</id>
+			<isACompany>false</isACompany>
+			<contactInfo>
+				<address>calle 150C #234-45G BARRIO NUEVA GRANADA</address>
+				<email>ismael.cardona@gmaikl.com</email>
+				<phoneNumber1>3124323856</phoneNumber1>
+				<phoneNumber2>3125476890</phoneNumber2>
+			</contactInfo>
+		</customerInfo>
+		
+		<financialActionDomainObject externalKey="00000001">
+			<sequenceNumber>1</sequenceNumber>
+			<financialNumber>00001</financialNumber>
+			<description>REGULAR TRANSACTION</description>
+			
+			<financialProduct>
+				<type>SAVING_ACCOUNT</type>
+				<description>NUEVA CUENTA DE AHORROS</description>
+				<serialNumber>0232324</serialNumber>
+				<referenceCost>200000</referenceCost>
+				<enterpriseProductsDomainEvents>
+					
+					<addDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0" />
+					
+					<addChekingAccountDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+						<checkbookReferecenNumber>0000000JFSX-68328300</checkbookReferecenNumber>
+						<accountNumber>2300043430030403</accountNumber>
+						<initialFunds>230000000</initialFunds>
+					</addChekingAccountDomainEvent>
+					
+					<addCardDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+						<accountNumber>2300043430030403</accountNumber>
+						<accountType>SAVING_ACCOUNT</accountType>
+						<cardType>DEBIT</cardType>
+					</addCardDomainEvent>
+					
+				</enterpriseProductsDomainEvents>
+			</financialProduct>
+			
+			<financialService>
+				<type>DOMESTIC_PAYMENT</type>
+				<description>pago en efectivo regular</description>
+				<serviceScheduledInfo>
+					<isScheduled>false</isScheduled>
+				</serviceScheduledInfo>
+				<enterpriseServicesDomainEvents>
+					<addDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0" />
+					
+					<executeDomesticPaymentDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+						<cashValue>980000</cashValue>
+						<clearingHouseCode>088g99rtrt</clearingHouseCode>
+						<targetAccountNumber>YMHK-54144838</targetAccountNumber>
+						<targetAccountType>CHECKING_ACCOUNT</targetAccountType>
+					</executeDomesticPaymentDomainEvent>
+					
+				</enterpriseServicesDomainEvents>
+			</financialService>
+			<taxes>20000</taxes>
+			<operationCost>200000</operationCost>
+			
+			<financialActionDomainEvents>
+				<addCustomerDomainEvent
+					xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+					<isTransferred>true</isTransferred>
+					<agreement>BANCO NACIONAL</agreement>
+				</addCustomerDomainEvent>
+			</financialActionDomainEvents>
+		</financialActionDomainObject>
+		
+		
+		<financialActionDomainObject externalKey="00000002">
+			<sequenceNumber>2</sequenceNumber>
+			<financialNumber>00002</financialNumber>
+			<description>REGULAR TRANSACTION</description>
+			
+			<financialProduct>
+				<type>SAVING_ACCOUNT</type>
+				<description>NUEVA CUENTA DE AHORROS</description>
+				<serialNumber>0232324</serialNumber>
+				<referenceCost>200000</referenceCost>
+				<enterpriseProductsDomainEvents>
+					
+					<addDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0" />
+					
+					<addChekingAccountDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+						<checkbookReferecenNumber>0000000JFSX-68328300</checkbookReferecenNumber>
+						<accountNumber>2300043430030403</accountNumber>
+						<initialFunds>230000000</initialFunds>
+					</addChekingAccountDomainEvent>
+					
+					<addCardDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+						<accountNumber>2300043430030403</accountNumber>
+						<accountType>SAVING_ACCOUNT</accountType>
+						<cardType>DEBIT</cardType>
+					</addCardDomainEvent>
+					
+				</enterpriseProductsDomainEvents>
+			</financialProduct>
+			
+			<financialService>
+				<type>DOMESTIC_PAYMENT</type>
+				<description>pago en efectivo regular</description>
+				<serviceScheduledInfo>
+					<isScheduled>false</isScheduled>
+				</serviceScheduledInfo>
+				<enterpriseServicesDomainEvents>
+					<addDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0" />
+					
+					<executeDomesticPaymentDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+						<cashValue>980000</cashValue>
+						<clearingHouseCode>088g99rtrt</clearingHouseCode>
+						<targetAccountNumber>YMHK-54144838</targetAccountNumber>
+						<targetAccountType>CHECKING_ACCOUNT</targetAccountType>
+					</executeDomesticPaymentDomainEvent>
+					
+				</enterpriseServicesDomainEvents>
+			</financialService>
+			<taxes>20000</taxes>
+			<operationCost>200000</operationCost>
+			
+			<financialActionDomainEvents>
+				<addCustomerDomainEvent
+					xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+					<isTransferred>true</isTransferred>
+					<agreement>BANCO NACIONAL</agreement>
+				</addCustomerDomainEvent>
+			</financialActionDomainEvents>
+		</financialActionDomainObject>
+		
+		
+		
+		<financialActionDomainObject externalKey="00000003">
+			<sequenceNumber>3</sequenceNumber>
+			<financialNumber>00003</financialNumber>
+			<description>REGULAR TRANSACTION</description>
+			
+			<financialProduct>
+				<type>SAVING_ACCOUNT</type>
+				<description>NUEVA CUENTA DE AHORROS</description>
+				<serialNumber>0232324</serialNumber>
+				<referenceCost>200000</referenceCost>
+				<enterpriseProductsDomainEvents>
+					
+					<addDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0" />
+					
+					<addChekingAccountDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+						<checkbookReferecenNumber>0000000JFSX-68328300</checkbookReferecenNumber>
+						<accountNumber>2300043430030403</accountNumber>
+						<initialFunds>230000000</initialFunds>
+					</addChekingAccountDomainEvent>
+					
+					<addSavingAccountDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+						<accountNumber>2300043430030403</accountNumber>
+						<initialFunds>1000000</initialFunds>
+					</addSavingAccountDomainEvent>
+					
+					<addCardDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+						<accountNumber>2300043430030403</accountNumber>
+						<accountType>SAVING_ACCOUNT</accountType>
+						<cardType>DEBIT</cardType>
+					</addCardDomainEvent>
+					
+				</enterpriseProductsDomainEvents>
+			</financialProduct>
+			
+			<financialService>
+				<type>DOMESTIC_PAYMENT</type>
+				<description>pago en efectivo regular</description>
+				<serviceScheduledInfo>
+					<isScheduled>false</isScheduled>
+				</serviceScheduledInfo>
+				<enterpriseServicesDomainEvents>
+					<addDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0" />
+					
+					<executeDomesticPaymentDomainEvent
+						xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+						<cashValue>980000</cashValue>
+						<clearingHouseCode>088g99rtrt</clearingHouseCode>
+						<targetAccountNumber>YMHK-54144838</targetAccountNumber>
+						<targetAccountType>CHECKING_ACCOUNT</targetAccountType>
+					</executeDomesticPaymentDomainEvent>
+					
+				</enterpriseServicesDomainEvents>
+			</financialService>
+			<taxes>20000</taxes>
+			<operationCost>200000</operationCost>
+			
+			<financialActionDomainEvents>
+				<addCustomerDomainEvent
+					xmlns="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0">
+					<isTransferred>true</isTransferred>
+					<agreement>BANCO NACIONAL</agreement>
+				</addCustomerDomainEvent>
+			</financialActionDomainEvents>
+		</financialActionDomainObject>
+		
+		
+	</enterpriseOperationEventObject>
+	
+</CRMBusinessEvent>

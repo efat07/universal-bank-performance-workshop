@@ -1,0 +1,16 @@
+apply plugin: 'base'
+apply plugin: 'java'
+
+
+ext {
+
+    AKKA_VERSION = "2.5.8"
+    JAVA_EE_API_VERSION = "7.0"
+    APACHE_COMMONS_IO = "2.5"
+    APACHE_COMMONS_LANG = "3.7"
+    LOG4J2 = "2.10.0"
+    JCACHE = "1.1.0"
+    ORACLE_JDBC = "11.2.0.3"
+    GEMFIRE_DATAGRID = "8.2.1"
+    
+}

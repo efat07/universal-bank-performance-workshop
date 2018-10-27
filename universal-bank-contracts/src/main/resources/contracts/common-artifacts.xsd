@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ns3="http://universal-bank/crm/enterprise-model/framework/common-artifacts/1.0.0" targetNamespace="http://universal-bank/crm/enterprise-model/framework/common-artifacts/1.0.0" elementFormDefault="qualified">
+
+	<xsd:simpleType name="BusinessEventType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PURCHASE" />
+			<xsd:enumeration value="CANCEL" />
+                        <xsd:enumeration value="FULL_STATE" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ProductType">
+		<xsd:restriction base="xsd:string">
+			<!-- cuenta corriente -->
+			<xsd:enumeration value="CHECKING_ACCOUNT" />
+			<!-- cuenta ahorros -->
+			<xsd:enumeration value="SAVING_ACCOUNT" />
+			<xsd:enumeration value="ATM_CARD" />
+			<xsd:enumeration value="CREDIT_CARD" />
+			<xsd:enumeration value="PERSONAL_LOAN" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="AccountType">
+		<xsd:restriction base="xsd:string">
+			<!-- cuenta corriente -->
+			<xsd:enumeration value="CHECKING_ACCOUNT" />
+			<!-- cuenta ahorros -->
+			<xsd:enumeration value="SAVING_ACCOUNT" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="CardType">
+		<xsd:restriction base="xsd:string">
+			<!-- para cuentas checking/saving -->
+			<xsd:enumeration value="DEBIT" />
+			<xsd:enumeration value="CREDIT" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ServiceType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="DOMESTIC_PAYMENT" />
+			<xsd:enumeration value="ELECTRONIC_PAYMENT" />
+			<xsd:enumeration value="ACCOUNT_TO_ACCOUNT_PAYMENT" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

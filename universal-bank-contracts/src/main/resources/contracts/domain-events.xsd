@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ns2="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0" 
+	xmlns:ns3="http://universal-bank/crm/enterprise-model/framework/common-artifacts/1.0.0" targetNamespace="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0" elementFormDefault="qualified">
+
+	<xsd:import schemaLocation="common-artifacts.xsd" namespace="http://universal-bank/crm/enterprise-model/framework/common-artifacts/1.0.0" />
+
+	<xsd:complexType name="enterpriseServicesDomainEvents">
+		<xsd:sequence>
+			<xsd:element name="addDomainEvent" type="ns2:addDomainEvent" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="cancelDomainEvent" type="ns2:cancelDomainEvent" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="executeDomesticPaymentDomainEvent" type="ns2:executeDomesticPaymentDomainEvent" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="executeElectronicPaymentDomainEvent" type="ns2:executeElectronicPaymentDomainEvent" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="executeAccountToAccountPaymentDomainEvent" type="ns2:executeAccountToAccountPaymentDomainEvent" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="enterpriseProductsDomainEvents">
+		<xsd:sequence>
+			<xsd:element name="addDomainEvent" type="ns2:addDomainEvent" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="cancelDomainEvent" type="ns2:cancelDomainEvent" minOccurs="0" maxOccurs="1" />
+                        <xsd:element name="addChekingAccountDomainEvent" type="ns2:addChekingAccountDomainEvent" minOccurs="0" maxOccurs="1" />
+                        <xsd:element name="addSavingAccountDomainEvent" type="ns2:addSavingAccountDomainEvent" minOccurs="0" maxOccurs="1" />
+                        <xsd:element name="addCardDomainEvent" type="ns2:addCardDomainEvent" minOccurs="0" maxOccurs="1" />
+                        <xsd:element name="cancelCardDomainEvent" type="ns2:cancelCardDomainEvent" minOccurs="0" maxOccurs="1" />                        
+                        <xsd:element name="addLoanDomainEvent" type="ns2:addLoanDomainEvent" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="financialActionDomainEvents">
+		<xsd:sequence>
+			<xsd:element name="addCustomerDomainEvent" type="ns2:addCustomerDomainEvent" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- common domain events -->
+
+	<xsd:complexType name="addDomainEvent">
+	</xsd:complexType>
+
+	<xsd:complexType name="cancelDomainEvent">
+		<xsd:sequence>
+			<xsd:element name="operationIdentifier" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="addCustomerDomainEvent">
+		<xsd:sequence>
+			<xsd:element name="isTransferred" type="xsd:boolean" />
+			<!-- convenio -->
+			<xsd:element name="agreement" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- products domain events -->
+        
+        <xsd:complexType name="addChekingAccountDomainEvent">
+		<xsd:sequence>
+			<xsd:element name="checkbookReferecenNumber" type="xsd:string" />
+                        <xsd:element name="accountNumber" type="xsd:string" />
+			<xsd:element name="initialFunds" type="xsd:double" />
+		</xsd:sequence>
+		<xsd:attribute name="operationIdentifier" type="xsd:string" />
+	</xsd:complexType>
+
+        <xsd:complexType name="addSavingAccountDomainEvent">
+		<xsd:sequence>
+			<xsd:element name="checkbookReferecenNumber" type="xsd:string" />
+                        <xsd:element name="accountNumber" type="xsd:string" />
+			<xsd:element name="initialFunds" type="xsd:double" />
+		</xsd:sequence>
+		<xsd:attribute name="operationIdentifier" type="xsd:string" />
+	</xsd:complexType> 
+        
+        <xsd:complexType name="addCardDomainEvent">
+		<xsd:sequence>
+                        <xsd:element name="accountNumber" type="xsd:string" />
+                        <xsd:element name="accountType" type="ns3:AccountType" />
+			<xsd:element name="cardType" type="ns3:CardType" />
+		</xsd:sequence>
+		<xsd:attribute name="operationIdentifier" type="xsd:string" />
+	</xsd:complexType>
+
+        <xsd:complexType name="cancelCardDomainEvent">
+		<xsd:sequence>
+                        <xsd:element name="accountNumber" type="xsd:string" />
+                        <xsd:element name="accountType" type="ns3:AccountType" />
+			<xsd:element name="cardType" type="ns3:CardType" />
+		</xsd:sequence>
+		<xsd:attribute name="operationIdentifier" type="xsd:string" />
+	</xsd:complexType>
+
+        <xsd:complexType name="addLoanDomainEvent">
+		<xsd:sequence>
+                        <xsd:element name="loanNumber" type="xsd:string" />
+                        <xsd:element name="requestedAmount" type="xsd:double" />
+                        <xsd:element name="totalFees" type="xsd:int" />
+		</xsd:sequence>
+		<xsd:attribute name="operationIdentifier" type="xsd:string" />
+	</xsd:complexType>
+
+	<!-- service domain events -->
+
+	<!-- pagos en efectivo a cuentas universal bank -->
+	<xsd:complexType name="executeDomesticPaymentDomainEvent">
+		<xsd:sequence>
+			<xsd:element name="cashValue" type="xsd:double" />
+			<xsd:element name="clearingHouseCode" type="xsd:string" />
+			<xsd:element name="targetAccountNumber" type="xsd:string" />
+			<xsd:element name="targetAccountType" type="ns3:AccountType" />
+		</xsd:sequence>
+		<xsd:attribute name="operationIdentifier" type="xsd:string" />
+	</xsd:complexType>
+
+	<!-- pagos a bancos externos -->
+	<xsd:complexType name="executeElectronicPaymentDomainEvent">
+		<xsd:sequence>
+			<xsd:element name="value" type="xsd:double" />
+			<xsd:element name="sourceAccountNumber" type="xsd:string" />
+			<xsd:element name="sourceAccountType" type="ns3:AccountType" />
+			<xsd:element name="targetBankCode" type="xsd:string" />
+			<xsd:element name="targetAccountNumber" type="xsd:string" />
+			<xsd:element name="targetAccountType" type="ns3:AccountType" />
+		</xsd:sequence>
+		<xsd:attribute name="operationIdentifier" type="xsd:string" />
+	</xsd:complexType>
+
+	<xsd:complexType name="executeAccountToAccountPaymentDomainEvent">
+		<xsd:sequence>
+			<xsd:element name="value" type="xsd:double" />
+			<xsd:element name="sourceAccountNumber" type="xsd:string" />
+			<xsd:element name="sourceAccountType" type="ns3:AccountType" />
+			<xsd:element name="targetAccountNumber" type="xsd:string" />
+			<xsd:element name="targetAccountType" type="ns3:AccountType" />
+		</xsd:sequence>
+		<xsd:attribute name="operationIdentifier" type="xsd:string" />
+	</xsd:complexType>
+
+</xsd:schema>

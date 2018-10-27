@@ -1,0 +1,37 @@
+plugins {
+    id 'war'  
+}
+
+repositories {
+	mavenCentral()
+    jcenter()
+    maven{
+    	url "http://www.datanucleus.org/downloads/maven2/"
+    }
+    maven{
+    	url "http://repo.spring.io/plugins-release/"
+    }
+}
+
+dependencies {
+
+	providedCompile group: 'javax', name: 'javaee-api', version: JAVA_EE_API_VERSION
+	
+	compile group: 'com.gemstone.gemfire', name: 'gemfire', version: GEMFIRE_DATAGRID
+	
+	compile group: 'javax.cache', name: 'cache-api', version: JCACHE
+	compile group: 'org.jsr107.ri', name: 'cache-ri-impl', version: JCACHE
+	compile group: 'oracle', name: 'ojdbc6', version: ORACLE_JDBC
+	
+	
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: APACHE_COMMONS_LANG
+	compile group: 'commons-io', name: 'commons-io', version: APACHE_COMMONS_IO
+	compile group: 'com.typesafe.akka', name: 'akka-actor_2.12', version: AKKA_VERSION
+	compile group: 'com.typesafe.akka', name: 'akka-remote_2.12', version: AKKA_VERSION
+	compile group: 'com.typesafe.akka', name: 'akka-stream_2.12', version: AKKA_VERSION
+	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: LOG4J2
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: LOG4J2
+	
+	compile project(':universal-bank-contracts')
+	
+}

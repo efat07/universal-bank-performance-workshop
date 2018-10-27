@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:ns1="http://universal-bank/crm/enterprise-model/framework/1.0.0" 
+  xmlns:ns2="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0" 
+  xmlns:ns3="http://universal-bank/crm/enterprise-model/framework/common-artifacts/1.0.0" targetNamespace="http://universal-bank/crm/enterprise-model/framework/1.0.0" elementFormDefault="qualified">
+
+
+  <xsd:import schemaLocation="common-artifacts.xsd" namespace="http://universal-bank/crm/enterprise-model/framework/common-artifacts/1.0.0" />
+
+  <xsd:import schemaLocation="domain-events.xsd" namespace="http://universal-bank/crm/enterprise-model/framework/domain-events/1.0.0" />
+
+  <xsd:element name="CRMBusinessEvent">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="eventHeader" type="ns1:eventHeader"/>
+        <xsd:element name="businessEventType" type="ns3:BusinessEventType"/>
+        <xsd:element name="enterpriseOperationEventObject" type="ns1:enterpriseOperationEventObject"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="eventHeader">
+    <xsd:sequence>
+      <xsd:element name="eventID" type="xsd:string"/>
+      <xsd:element name="sourceSystem" type="xsd:string"/>
+      <xsd:element name="eventChannel" type="xsd:string"/>
+      <xsd:element name="eventCreationTime" type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="enterpriseOperationEventObject">
+    <xsd:sequence>
+      <xsd:element name="branchOfficeInfo" type="ns1:branchOfficeInfo"/>
+      <xsd:element name="customerInfo" type="ns1:customerInfo"/>
+      <xsd:element name="financialActionDomainObject" type="ns1:financialActionDomainObject" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="enterpriseOperationKey" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="branchOfficeInfo">
+    <xsd:sequence>
+      <xsd:element name="lineNumber" type="xsd:string"/>
+      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="assignedLicense" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="customerInfo">
+    <xsd:sequence>
+      <xsd:element name="fullName" type="xsd:string"/>
+      <xsd:element name="id" type="xsd:string"/>
+      <xsd:element name="isACompany" type="xsd:boolean"/>
+      <xsd:element name="contactInfo" type="ns1:contactInfo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="contactInfo">
+    <xsd:sequence>
+      <xsd:element name="address" type="xsd:boolean"/>
+      <xsd:element name="email" type="xsd:string"/>
+      <xsd:element name="phoneNumber1" type="xsd:string"/>
+      <xsd:element name="phoneNumber2" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="financialActionDomainObject">
+    <xsd:sequence>
+      <xsd:element name="sequenceNumber" type="xsd:string"/>
+      <xsd:element name="financialNumber" type="xsd:string"/>
+      <xsd:element name="description" type="xsd:string"/>
+      <!-- 1 producto O un servicio -->
+      <xsd:element name="financialProduct" type="ns1:financialProduct" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="financialService" type="ns1:financialService" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="taxes" type="xsd:double"/>
+      <xsd:element name="operationCost" type="xsd:double"/>
+      <xsd:element name="financialActionDomainEvents" type="ns2:financialActionDomainEvents"/>
+
+    </xsd:sequence>
+    <xsd:attribute name="externalKey" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="financialProduct">
+    <xsd:sequence>
+      <xsd:element name="type" type="ns3:ProductType"/>
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="serialNumber" type="xsd:string"/>
+      <xsd:element name="referenceCost" type="xsd:double"/>
+      <xsd:element name="enterpriseProductsDomainEvents" type="ns2:enterpriseProductsDomainEvents"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="financialService">
+    <xsd:sequence>
+      <xsd:element name="type" type="ns3:ServiceType"/>
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="serviceScheduledInfo" type="ns1:serviceScheduledInfo"/>
+      <xsd:element name="enterpriseServicesDomainEvents" type="ns2:enterpriseServicesDomainEvents"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="serviceScheduledInfo">
+    <xsd:sequence>
+      <xsd:element name="isScheduled" type="xsd:boolean"/>
+      <xsd:element name="scheduledDate" type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+
+</xsd:schema>

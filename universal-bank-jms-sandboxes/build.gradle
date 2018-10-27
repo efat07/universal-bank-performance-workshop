@@ -1,0 +1,16 @@
+plugins {
+  id "java"	
+  id "com.github.johnrengelman.shadow" version "2.0.4"
+}
+
+repositories {
+	mavenCentral()
+    jcenter()
+}
+
+dependencies {
+	compileOnly group: 'javax', name: 'javaee-api', version: JAVA_EE_API_VERSION
+	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: LOG4J2
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: LOG4J2
+}
+
