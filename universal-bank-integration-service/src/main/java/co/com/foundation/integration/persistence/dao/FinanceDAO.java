@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import co.com.foundation.integration.actor.exceptions.RetryException;
 import co.com.foundation.integration.persistence.entity.AutorizedCompany;
@@ -54,15 +55,13 @@ public class FinanceDAO {
 	public Optional<AutorizedCompany> verifyAutorizedCompany(final String officeCode) throws RetryException {
 
 		try {
-
 			CriteriaBuilder cb = em.getCriteriaBuilder();
 			CriteriaQuery<AutorizedCompany> cq = cb.createQuery(AutorizedCompany.class);
-			cq.from(AutorizedCompany.class);
+			Root<AutorizedCompany> autorizedCompany = cq.from(AutorizedCompany.class);
+			cq.select(autorizedCompany);
+			cq.where(cb.equal(autorizedCompany.get("officeCode"), officeCode));
 			List<AutorizedCompany> autorizedCompanies = em.createQuery(cq).getResultList();
-
-			Optional<AutorizedCompany> companyfound = autorizedCompanies.stream()
-					.filter(autorizedCompany -> officeCode.equals(autorizedCompany.getOfficeCode())).findFirst();
-
+			Optional<AutorizedCompany> companyfound = autorizedCompanies.stream().findFirst();
 			return companyfound;
 		} catch (Exception e) {
 			throw new RetryException("error executing query", e);
@@ -74,13 +73,12 @@ public class FinanceDAO {
 		try {
 			CriteriaBuilder cb = em.getCriteriaBuilder();
 			CriteriaQuery<CorporateAccount> cq = cb.createQuery(CorporateAccount.class);
-			cq.from(CorporateAccount.class);
+			Root<CorporateAccount> corporateAccount = cq.from(CorporateAccount.class);
+			cq.select(corporateAccount);
+			cq.where(cb.equal(corporateAccount.get("accountNumber"), account));
 			List<CorporateAccount> accounts = em.createQuery(cq).getResultList();
-
-			Optional<CorporateAccount> accountFound = accounts.stream()
-					.filter(approvedAccount -> account.equals(approvedAccount.getAccountNumber())).findFirst();
-
-			return accountFound;
+		    Optional<CorporateAccount> accountFound = accounts.stream().findFirst();
+		    return accountFound;
 		} catch (Exception e) {
 			throw new RetryException("error executing query", e);
 		}
@@ -89,20 +87,28 @@ public class FinanceDAO {
 	public Optional<CorporateCheckbook> verifyCheckBook(final String checkBookNumber) throws RetryException {
 
 		try {
-
 			CriteriaBuilder cb = em.getCriteriaBuilder();
 			CriteriaQuery<CorporateCheckbook> cq = cb.createQuery(CorporateCheckbook.class);
-			cq.from(CorporateCheckbook.class);
+			Root<CorporateCheckbook> corporateCheckbook = cq.from(CorporateCheckbook.class);
+			cq.select(corporateCheckbook);
+			cq.where(cb.equal(corporateCheckbook.get("referenceNumber"), checkBookNumber));
 			List<CorporateCheckbook> checkBooks = em.createQuery(cq).getResultList();
-
-			Optional<CorporateCheckbook> checkBookFound = checkBooks.stream()
-					.filter(approvedCheckBook -> checkBookNumber.equals(approvedCheckBook.getReferenceNumber()))
-					.findFirst();
-
+			Optional<CorporateCheckbook> checkBookFound = checkBooks.stream().findFirst();
 			return checkBookFound;
 		} catch (Exception e) {
 			throw new RetryException("error executing query", e);
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
