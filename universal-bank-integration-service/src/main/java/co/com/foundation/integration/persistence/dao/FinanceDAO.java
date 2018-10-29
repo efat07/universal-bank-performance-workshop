@@ -99,16 +99,4 @@ public class FinanceDAO {
 			throw new RetryException("error executing query", e);
 		}
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
