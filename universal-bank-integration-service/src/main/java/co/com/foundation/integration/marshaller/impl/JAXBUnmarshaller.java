@@ -22,15 +22,17 @@ import universal_bank.crm.enterprise_model.framework._1_0.CRMBusinessEvent;
 public class JAXBUnmarshaller implements Unmarshaller<String, CRMBusinessEvent> {
 
 	private static final String JAXB_PACKAGES = "universal_bank.crm.enterprise_model.framework._1_0:universal_bank.crm.enterprise_model.framework.common_artifacts._1_0:universal_bank.crm.enterprise_model.framework.domain_events._1_0";
-	private JAXBContext context;
-	private javax.xml.bind.Unmarshaller um;
+	//private JAXBContext context;
+	//private javax.xml.bind.Unmarshaller um;
 
-	private JAXBUnmarshaller() throws JAXBException {
+	/*private JAXBUnmarshaller() throws JAXBException {
 		super();
 		context = JAXBContext.newInstance(JAXB_PACKAGES);
 		um = context.createUnmarshaller();
-	}
+	}*/
 
+	//
+	
 	public static JAXBUnmarshaller newInstance() throws JAXBException {
 		return new JAXBUnmarshaller();
 	}
@@ -38,7 +40,8 @@ public class JAXBUnmarshaller implements Unmarshaller<String, CRMBusinessEvent> 
 	@Override
 	public CRMBusinessEvent unmarshall(final String input) {
 		try {
-			return (CRMBusinessEvent) um.unmarshal(IOUtils.toInputStream(input, "UTF-8"));
+			
+			return (CRMBusinessEvent) JAXBContext.newInstance(JAXB_PACKAGES).createUnmarshaller().unmarshal(IOUtils.toInputStream(input, "UTF-8"));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

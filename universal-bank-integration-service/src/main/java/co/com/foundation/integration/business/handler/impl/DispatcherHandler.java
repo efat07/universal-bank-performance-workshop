@@ -46,9 +46,11 @@ public class DispatcherHandler implements Handler<CRMBusinessEvent> {
 
 		LOGGER.info("start dispatcher handler");
 		
+		JAXBMarshaller marshaller = JAXBMarshaller.newInstance();
+		
 		input.getEnterpriseOperationEventObject().getFinancialActionDomainObject().stream().forEach((action) -> {
 
-			String xml = JAXBMarshaller.newInstance().marshall( action );
+			String xml = marshaller.marshall( action );
 			datagridDispatcher.publishOnFinanceRegion( action.getExternalKey() , xml);
 			mqDispatcher.dispatchMessage(xml);
 		});
