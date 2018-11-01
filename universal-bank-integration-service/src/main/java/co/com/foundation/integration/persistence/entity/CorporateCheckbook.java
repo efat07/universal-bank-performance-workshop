@@ -17,7 +17,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="CORPORATE_CHECKBOOKS")
-@NamedQuery(name="CorporateCheckbook.findAll", query="SELECT c FROM CorporateCheckbook c")
 public class CorporateCheckbook implements Serializable {
 	private static final long serialVersionUID = 1L;
 

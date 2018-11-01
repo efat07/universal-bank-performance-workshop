@@ -23,7 +23,6 @@ dependencies {
 	compile group: 'org.jsr107.ri', name: 'cache-ri-impl', version: JCACHE
 	compile group: 'oracle', name: 'ojdbc6', version: ORACLE_JDBC
 	
-	
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: APACHE_COMMONS_LANG
 	compile group: 'commons-io', name: 'commons-io', version: APACHE_COMMONS_IO
 	compile group: 'com.typesafe.akka', name: 'akka-actor_2.12', version: AKKA_VERSION

@@ -44,12 +44,12 @@ public class FilterHandler implements Handler<CRMBusinessEvent> {
 		LOGGER.info("start filter handler");
 		
 		String officeCode = input.getEnterpriseOperationEventObject().getBranchOfficeInfo().getAssignedLicense();
-		Optional<AutorizedCompany> companyfound = financeDAO.verifyAutorizedCompany(officeCode);
+		List<AutorizedCompany> companyfound = financeDAO.verifyAutorizedCompany(officeCode);
 
-		if (!companyfound.isPresent()) {
+		if (companyfound == null || companyfound.isEmpty()) {
 			return false;
 		} else {
-			LOGGER.info("message comes from a valid company {}", companyfound.get().getCompanyName());
+			LOGGER.info("message comes from a valid company {}", companyfound.get(0).getCompanyName());
 		}
 		
 		List<FinancialActionDomainObject> results = input.getEnterpriseOperationEventObject()
@@ -58,13 +58,26 @@ public class FilterHandler implements Handler<CRMBusinessEvent> {
 				.filter(predicate)
 				.collect(Collectors.toList());
 		
+		//System.out.println("EYNER::::  predicate " + predicate);
+		
+		
+		for (FinancialActionDomainObject financialActionDomainObject : results) {
+			System.out.println("EYNER::::   financialActionDomainObject " + financialActionDomainObject.getDescription());
+		}
+		
+		
+		
 		input.getEnterpriseOperationEventObject()
 		.getFinancialActionDomainObject()
 		.clear();
 		
+		//System.out.println("EYNER::::  input " + input);
+		
 		input.getEnterpriseOperationEventObject()
 		.getFinancialActionDomainObject()
 		.addAll(results);
+		
+		//System.out.println("EYNER::::  input " + input);
 		
 		LOGGER.info("end filter handler");
 		return true;

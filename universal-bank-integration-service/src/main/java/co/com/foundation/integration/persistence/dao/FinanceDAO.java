@@ -52,7 +52,7 @@ public class FinanceDAO {
 		em.getTransaction().commit();
 	}
 
-	public Optional<AutorizedCompany> verifyAutorizedCompany(final String officeCode) throws RetryException {
+	public List<AutorizedCompany> verifyAutorizedCompany(final String officeCode) throws RetryException {
 
 		try {
 			CriteriaBuilder cb = em.getCriteriaBuilder();
@@ -61,8 +61,9 @@ public class FinanceDAO {
 			cq.select(autorizedCompany);
 			cq.where(cb.equal(autorizedCompany.get("officeCode"), officeCode));
 			List<AutorizedCompany> autorizedCompanies = em.createQuery(cq).getResultList();
-			Optional<AutorizedCompany> companyfound = autorizedCompanies.stream().findFirst();
-			return companyfound;
+			//Optional<AutorizedCompany> companyfound = autorizedCompanies.stream().findFirst();
+			//List<AutorizedCompany> companyfound = autorizedCompanies.isEmpty()?autorizedCompanies:null;
+			return autorizedCompanies;
 		} catch (Exception e) {
 			throw new RetryException("error executing query", e);
 		}

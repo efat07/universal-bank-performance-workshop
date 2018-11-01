@@ -21,12 +21,21 @@
 			<property name="hibernate.connection.password" value="qwerty" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect" />
 			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
-			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.cache.use_query_cache" value="false" />
-			<property name="hibernate.transaction.flush_before_completion"
-				value="true" />
-				
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.transaction.flush_before_completion" value="true" />
+			<!--   C3P0 configuration -->
+            <!-- <property name="hibernate.connection.provider_class"
+                value="org.hibernate.connection.C3P0ConnectionProvider" />
+ -->
+           <!--  <property name="hibernate.c3p0.max_size" value="20" />
+            <property name="hibernate.c3p0.min_size" value="10" />
+            <property name="hibernate.c3p0.acquire_increment" value="1" />
+            <property name="hibernate.c3p0.idle_test_period" value="3000" />
+            <property name="hibernate.c3p0.max_statements" value="50" />
+            <property name="hibernate.c3p0.timeout" value="300" /> -->
+			
 		</properties>
 	</persistence-unit>
 </persistence>

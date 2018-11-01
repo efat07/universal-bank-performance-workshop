@@ -42,10 +42,10 @@ public class FinancialActionsProcessorWS {
 	public FinancialActionResponseDTO processFinancialAction( @WebParam(name="request") FinancialActionRequestDTO request ) throws JAXBException{
 		
 		LOGGER.info("new message received to create work");
-		LOGGER.info( request.getPayload() );
+		//LOGGER.info( request.getPayload() );
 		
 		// ---- validate if xsd-schema is well defined
-		JAXBUnmarshaller.newInstance().unmarshall(request.getPayload());
+		//JAXBUnmarshaller.newInstance().unmarshall(request.getPayload());
 		
 		WorkItem item = new WorkItem();
 		item.setXmlContent(request.getPayload());

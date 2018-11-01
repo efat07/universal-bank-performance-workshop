@@ -16,7 +16,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="CORPORATE_ACCOUNTS")
-@NamedQuery(name="CorporateAccount.findAll", query="SELECT c FROM CorporateAccount c")
 public class CorporateAccount implements Serializable {
 	private static final long serialVersionUID = 1L;
 

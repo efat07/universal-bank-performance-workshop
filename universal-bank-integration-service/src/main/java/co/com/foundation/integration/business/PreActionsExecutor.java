@@ -50,9 +50,9 @@ public class PreActionsExecutor {
 
 		if( officeCode != null && operationKey !=null ) {
 			dispatcher.dispatchMessage(workItem.getXmlContent());
+			workPublisher.tell(workItem, workPublisher);
+		}else {
+			workPublisher.tell(workItem, ActorRef.noSender());
 		}
-		
-		workPublisher.tell(workItem, ActorRef.noSender());
 	}
-	
 }
